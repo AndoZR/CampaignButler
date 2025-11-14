@@ -4,6 +4,20 @@ function App() {
   const [domainInput, setDomainInput] = useState('')
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [currentToolkit, setCurrentToolkit] = useState(0)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    agreeToTexts: false
+  })
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 
   const testimonials = [
     {
@@ -235,19 +249,19 @@ function App() {
                   {/* Connection Lines */}
                   <g stroke="#3b82f6" strokeWidth="1.5" fill="none" opacity="0.4">
                     <line x1="100" y1="150" x2="200" y2="200" />
-                    <line x1="200" y2="200" x2="300" y1="180" />
+                    <line x1="200" y1="200" x2="300" y2="180" />
                     <line x1="300" y1="180" x2="400" y2="220" />
-                    <line x1="200" y2="200" x2="250" y1="300" />
+                    <line x1="200" y1="200" x2="250" y2="300" />
                     <line x1="300" y1="180" x2="350" y2="280" />
-                    <line x1="400" y2="220" x2="450" y1="320" />
+                    <line x1="400" y1="220" x2="450" y2="320" />
                     <line x1="250" y1="300" x2="350" y2="280" />
-                    <line x1="350" y2="280" x2="450" y1="320" />
-                    <line x1="350" y2="280" x2="400" y2="380" />
+                    <line x1="350" y1="280" x2="450" y2="320" />
+                    <line x1="350" y1="280" x2="400" y2="380" />
                     <line x1="450" y1="320" x2="500" y2="400" />
-                    <line x1="400" y2="380" x2="500" y2="400" />
-                    <line x1="500" y2="400" x2="480" y1="500" />
-                    <line x1="400" y2="380" x2="380" y1="480" />
-                    <line x1="380" y1="480" x2="480" y1="500" />
+                    <line x1="400" y1="380" x2="500" y2="400" />
+                    <line x1="500" y1="400" x2="480" y2="500" />
+                    <line x1="400" y1="380" x2="380" y2="480" />
+                    <line x1="380" y1="480" x2="480" y2="500" />
                   </g>
 
                   {/* User Silhouette Nodes with Glow */}
@@ -1203,149 +1217,258 @@ function App() {
         </div>
       </section>
 
-      {/* Final CTA Section - Asset10 */}
-      <section className="relative z-10 bg-gradient-to-r from-red-600 to-red-700 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Ready to Win Your Next Election?
+      {/* Ready to Launch Your Winning Campaign Section - Asset11 */}
+      <section className="relative z-10 bg-[#0a0e27] py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - Content */}
+            <div className="space-y-8">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="text-white">Ready to Launch Your</span>
+                <br />
+                <span className="text-red-600">Winning Campaign?</span>
           </h2>
-          <p className="text-xl text-red-100 mb-8 leading-relaxed">
-            Join thousands of winning candidates who trust Campaign Butler to power their campaigns. 
-            Get started today and see the difference our platform makes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-red-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 hover:shadow-xl transition-all duration-300">
-              Start Your Campaign
+              <p className="text-xl text-white leading-relaxed">
+                Get started today with Campaign Butler and receive:
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-2">
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-red-600"></div>
+                  </div>
+                  <span className="text-lg text-white">Same-day domain and email setup</span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-2">
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-red-600"></div>
+                  </div>
+                  <span className="text-lg text-white">Professional website within 72 hours</span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-2">
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-red-600"></div>
+                  </div>
+                  <span className="text-lg text-white">Dedicated campaign strategist</span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-2">
+                    <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-red-600"></div>
+                  </div>
+                  <span className="text-lg text-white">Complete onboarding and training</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right Side - Contact Form */}
+            <div className="bg-[#1a1f3a] rounded-xl p-8">
+              <form className="space-y-6" onSubmit={(e) => {
+                e.preventDefault()
+                // Handle form submission
+                console.log('Form submitted:', formData)
+              }}>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full bg-[#0a0e27] border border-white/20 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent placeholder:text-white/60"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full bg-[#0a0e27] border border-white/20 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent placeholder:text-white/60"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-[#0a0e27] border border-white/20 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent placeholder:text-white/60"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Phone Number (optional)"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full bg-[#0a0e27] border border-white/20 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent placeholder:text-white/60"
+                  />
+                </div>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="agreeToTexts"
+                    checked={formData.agreeToTexts}
+                    onChange={(e) => setFormData({ ...formData, agreeToTexts: e.target.checked })}
+                    className="mt-1 w-5 h-5 border-2 border-white/20 rounded bg-[#0a0e27] text-red-600 focus:ring-2 focus:ring-red-600 focus:ring-offset-0 focus:ring-offset-transparent cursor-pointer"
+                  />
+                  <label htmlFor="agreeToTexts" className="text-white text-sm leading-relaxed cursor-pointer">
+                    I agree to receive text messages from Campaign Butler. By checking this box and providing your phone number,{' '}
+                    <span className="text-red-600 cursor-pointer hover:underline">Read more...</span>
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold flex items-center justify-center gap-2 hover:bg-red-700 transition-colors"
+                >
+                  Launch My Campaign
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
             </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-300">
-              Schedule a Demo
-            </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section - Asset11 */}
-      <section className="relative z-10 bg-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600">
-              Everything you need to know about Campaign Butler
-            </p>
+      {/* Hero Section - Asset12 */}
+      <section className="relative z-10 bg-[#0a0e27] py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Pattern - Dotted Swirling Lines */}
+        <div className="absolute inset-0 opacity-20">
+          <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="dotsPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1.5" fill="#60a5fa" opacity="0.4" />
+              </pattern>
+            </defs>
+            {/* Swirling/Concentric Lines */}
+            <path d="M 200 200 Q 400 100 600 200 T 1000 200" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.3" />
+            <path d="M 150 300 Q 500 200 850 300 T 1150 300" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.3" />
+            <path d="M 100 400 Q 600 300 1100 400" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.3" />
+            <circle cx="800" cy="400" r="150" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.2" />
+            <circle cx="800" cy="400" r="100" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.2" />
+            <circle cx="800" cy="400" r="50" stroke="url(#dotsPattern)" strokeWidth="2" fill="none" opacity="0.2" />
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Half - Text Content */}
+            <div className="space-y-8">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                Visibility Starts Here.
+                <br />
+                Victory Follows.
+              </h1>
+              <p className="text-xl text-white/90 leading-relaxed max-w-2xl">
+                Don't leave your campaign success to chance. Partner with the experts who understand what it takes to win in today's complex political landscape.
+              </p>
+              <button className="bg-red-600 text-white px-8 py-4 text-lg font-semibold flex items-center gap-2 hover:bg-red-700 transition-colors rounded-lg">
+                Get Started Today
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
           </div>
 
-          <div className="space-y-6">
-            {[
-              {
-                question: "How quickly can I get started with Campaign Butler?",
-                answer: "You can get started in minutes. Our platform is designed for quick setup, and our team is available to help you launch your campaign website and domain within 24 hours."
-              },
-              {
-                question: "Do you support campaigns at all levels?",
-                answer: "Yes! Campaign Butler works with campaigns at every level - from local school board races to congressional campaigns. Our platform scales to meet your needs."
-              },
-              {
-                question: "What makes Campaign Butler different from other platforms?",
-                answer: "Campaign Butler combines decades of political expertise with cutting-edge technology. We're not just a tech platform - we're campaign strategists who understand what it takes to win elections."
-              },
-              {
-                question: "Is Campaign Butler compliant with campaign finance regulations?",
-                answer: "Absolutely. Our platform is designed to help you stay compliant with FEC regulations and state-specific requirements. We provide tools to track contributions and expenditures properly."
-              },
-              {
-                question: "Can I use Campaign Butler for non-partisan races?",
-                answer: "Yes, Campaign Butler serves both partisan and non-partisan campaigns. Our tools are designed to work for any type of political campaign."
-              }
-            ].map((faq, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+            {/* Right Half - Image Placeholder (Woman) */}
+            <div className="relative">
+              <div className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center">
+                {/* Placeholder for woman image - using a professional silhouette */}
+                <div className="relative w-full h-full max-w-md">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl blur-3xl"></div>
+                  <div className="relative bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl p-8 h-full flex items-center justify-center">
+                    {/* Professional woman silhouette placeholder */}
+                    <div className="text-center space-y-4">
+                      <div className="w-48 h-48 mx-auto bg-gradient-to-br from-blue-200 to-purple-200 rounded-full flex items-center justify-center">
+                        <svg className="w-32 h-32 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                        </svg>
               </div>
-            ))}
+                      <p className="text-white/60 text-sm">Professional Image</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Logo and Scroll-to-Top Section - Asset12 */}
+      <section className="relative z-10 bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex-1 flex justify-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-red-600">
+              Butler
+            </h2>
+          </div>
+          
+          {/* Scroll-to-Top Button */}
+          <button
+            onClick={scrollToTop}
+            className="bg-red-600 text-white w-12 h-12 rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors shadow-lg"
+            aria-label="Scroll to top"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </button>
         </div>
       </section>
 
       {/* Footer Section - Asset12 */}
-      <footer className="relative z-10 bg-[#0a0e27] text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+      <footer className="relative z-10 bg-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            {/* Brand Column */}
-            <div>
-              <h3 className="text-2xl font-bold mb-4">
-                <span className="text-white">Campaign</span>
-                <span className="text-red-600">Butler</span>
-              </h3>
-              <p className="text-gray-400 mb-4">
-                Your complete campaign toolkit for winning elections at every level.
-              </p>
+          {/* Separator */}
+          <div className="border-t border-blue-300 mb-8"></div>
+          
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            {/* Copyright */}
+            <p className="text-blue-400 text-sm">
+              © 2025 Campaign Butler. All Rights Reserved.
+            </p>
+            
+            {/* Social Media Icons */}
               <div className="flex gap-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              {/* Instagram */}
+              <a href="#" className="text-blue-400 hover:text-blue-500 transition-colors" aria-label="Instagram">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              
+              {/* Facebook */}
+              <a href="#" className="text-blue-400 hover:text-blue-500 transition-colors" aria-label="Facebook">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              
+              {/* YouTube */}
+              <a href="#" className="text-blue-400 hover:text-blue-500 transition-colors" aria-label="YouTube">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              
+              {/* X (Twitter) */}
+              <a href="#" className="text-blue-400 hover:text-blue-500 transition-colors" aria-label="X (Twitter)">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
-              </div>
-            </div>
-
-            {/* Product Column */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Product</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Updates</a></li>
-              </ul>
-            </div>
-
-            {/* Resources Column */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Webinars</a></li>
-              </ul>
-            </div>
-
-            {/* Company Column */}
-            <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-400 text-sm">
-                &copy; {new Date().getFullYear()} Campaign Butler. All rights reserved.
-              </p>
-              <div className="flex gap-6 text-sm">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a>
-              </div>
+              
+              {/* TikTok */}
+              <a href="#" className="text-blue-400 hover:text-blue-500 transition-colors" aria-label="TikTok">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.27 6.27 0 0 0-1-.05A6.24 6.24 0 0 0 5 20.1a6.24 6.24 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>
